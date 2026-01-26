@@ -1282,9 +1282,24 @@
         }
 
         function printReceipt() {
+            // Create a wrapper with padding
             const receiptElement = document.getElementById('receiptContent');
+            const receiptWrapper = document.createElement('div');
+            receiptWrapper.style.padding = '40px';
+            receiptWrapper.style.backgroundColor = '#FEF9F2';
+            receiptWrapper.style.borderRadius = '20px';
             
-            html2canvas(receiptElement, {
+            // Clone the receipt content without buttons
+            const clonedContent = receiptElement.cloneNode(true);
+            const actionsButton = clonedContent.querySelector('.receipt-actions');
+            if (actionsButton) {
+                actionsButton.style.display = 'none';
+            }
+            
+            receiptWrapper.appendChild(clonedContent);
+            document.body.appendChild(receiptWrapper);
+            
+            html2canvas(receiptWrapper, {
                 backgroundColor: '#FEF9F2',
                 scale: 2,
                 logging: false
@@ -1293,20 +1308,38 @@
                 link.href = canvas.toDataURL('image/png');
                 link.download = `Receipt-${window.currentReceipt.id}.png`;
                 link.click();
+                document.body.removeChild(receiptWrapper);
             }).catch(err => {
                 console.error('Error generating image:', err);
                 alert('Error generating PNG. Please try again.');
+                document.body.removeChild(receiptWrapper);
             });
         }
 
         function shareOnWhatsApp() {
+            // Create a wrapper with padding
             const receiptElement = document.getElementById('receiptContent');
+            const receiptWrapper = document.createElement('div');
+            receiptWrapper.style.padding = '40px';
+            receiptWrapper.style.backgroundColor = '#FEF9F2';
+            receiptWrapper.style.borderRadius = '20px';
             
-            html2canvas(receiptElement, {
+            // Clone the receipt content without buttons
+            const clonedContent = receiptElement.cloneNode(true);
+            const actionsButton = clonedContent.querySelector('.receipt-actions');
+            if (actionsButton) {
+                actionsButton.style.display = 'none';
+            }
+            
+            receiptWrapper.appendChild(clonedContent);
+            document.body.appendChild(receiptWrapper);
+            
+            html2canvas(receiptWrapper, {
                 backgroundColor: '#FEF9F2',
                 scale: 2,
                 logging: false
             }).then(canvas => {
+                document.body.removeChild(receiptWrapper);
                 canvas.toBlob(blob => {
                     const file = new File([blob], `Receipt-${window.currentReceipt.id}.png`, { type: 'image/png' });
                     
@@ -1343,6 +1376,7 @@
             }).catch(err => {
                 console.error('Error generating image:', err);
                 alert('Error generating PNG. Please try again.');
+                document.body.removeChild(receiptWrapper);
             });
         }
 
