@@ -1114,8 +1114,8 @@
 
     <div id="whatsappModal" class="modal">
         <div class="modal-content">
-            <h2>Share on WhatsApp</h2>
-            <p>Opening WhatsApp to share the receipt image. Make sure WhatsApp is installed on your device.</p>
+            <h2>Share Receipt</h2>
+            <p>Preparing your receipt image...</p>
             <div class="modal-buttons">
                 <button class="btn-cancel" onclick="closeModal()">Close</button>
             </div>
@@ -1298,33 +1298,55 @@
                 logging: false
             }).then(canvas => {
                 canvas.toBlob(blob => {
-                    // For web, we'll create a text message with receipt details
-                    const receipt = window.currentReceipt;
-                    const itemsList = receipt.items.map(item => `${item.name}: ₹${item.price}`).join('\n');
+                    const file = new File([blob], `Receipt-${window.currentReceipt.id}.png`, { type: 'image/png' });
                     
-                    const message = `🙏 *Shankara Prakashana Samithi*\n` +
-                        `*Donation Receipt*\n\n` +
-                        `Receipt #${receipt.id}\n` +
-                        `Date: ${receipt.date}\n` +
-                        `Donor: ${receipt.payerName}\n\n` +
-                        `*Books Donated:*\n${itemsList}\n\n` +
-                        `*Total Donation: ₹${receipt.total.toLocaleString('en-IN')}*${receipt.remarks ? '\n\nRemarks: ' + receipt.remarks : ''}`;
-                    
-                    const encodedMessage = encodeURIComponent(message);
-                    const whatsappUrl = `https://wa.me/?text=${encodedMessage}`;
-                    
-                    // Show modal
-                    document.getElementById('whatsappModal').classList.add('active');
-                    
-                    // Open WhatsApp after a short delay
-                    setTimeout(() => {
-                        window.open(whatsappUrl, '_blank');
-                    }, 500);
+                    // Check if Web Share API is available
+                    if (navigator.share && navigator.canShare({ files: [file] })) {
+                        navigator.share({
+                            files: [file],
+                            title: 'Donation Receipt',
+                            text: '🙏 Shankara Prakashana Samithi - Donation Receipt'
+                        }).then(() => {
+                            console.log('Receipt shared successfully');
+                        }).catch(err => {
+                            if (err.name !== 'AbortError') {
+                                console.error('Error sharing:', err);
+                            }
+                        });
+                    } else {
+                        // Fallback: Copy image to clipboard and show instructions
+                        navigator.clipboard.write([
+                            new ClipboardItem({ 'image/png': blob })
+                        ]).then(() => {
+                            showWhatsAppModal('Image Copied!', 'Receipt image has been copied to your clipboard. Open WhatsApp and paste it in the chat.');
+                        }).catch(err => {
+                            console.error('Error copying to clipboard:', err);
+                            // Final fallback: Download the image
+                            const link = document.createElement('a');
+                            link.href = canvas.toDataURL('image/png');
+                            link.download = `Receipt-${window.currentReceipt.id}.png`;
+                            link.click();
+                            showWhatsAppModal('Image Downloaded', 'Receipt image has been downloaded. You can now share it on WhatsApp.');
+                        });
+                    }
                 });
             }).catch(err => {
                 console.error('Error generating image:', err);
-                alert('Error generating image. Please try again.');
+                alert('Error generating PNG. Please try again.');
             });
+        }
+
+        function showWhatsAppModal(title, message) {
+            const modal = document.getElementById('whatsappModal');
+            const modalContent = modal.querySelector('.modal-content');
+            modalContent.innerHTML = `
+                <h2>${title}</h2>
+                <p>${message}</p>
+                <div class="modal-buttons">
+                    <button class="btn-cancel" onclick="closeModal()">Close</button>
+                </div>
+            `;
+            modal.classList.add('active');
         }
 
         function closeModal() {
