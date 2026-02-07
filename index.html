@@ -1583,33 +1583,35 @@
         }
 
         function shareReceipt() {
-            const receiptDiv = document.getElementById('receipt');
-            html2canvas(receiptDiv, {
-                backgroundColor: '#FEF9F2',
-                scale: 2
-            }).then(canvas => {
-                canvas.toBlob(blob => {
-                    const file = new File([blob], 'receipt-' + new Date().getTime() + '.png', { type: 'image/png' });
-                    
-                    // Check if Web Share API is available
-                    if (navigator.share) {
+            // Check if device is mobile
+            const isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
+            
+            // Check if Web Share API is available
+            if (isMobile && navigator.share) {
+                // Mobile device with Web Share API support
+                const receiptDiv = document.getElementById('receipt');
+                html2canvas(receiptDiv, {
+                    backgroundColor: '#FEF9F2',
+                    scale: 2
+                }).then(canvas => {
+                    canvas.toBlob(blob => {
+                        const file = new File([blob], 'receipt-' + new Date().getTime() + '.png', { type: 'image/png' });
+                        
                         navigator.share({
                             title: 'Shankara Prakashana Samithi Receipt',
                             text: 'Here is my donation receipt',
                             files: [file]
-                        }).then(() => {
-                            console.log('Receipt shared successfully');
                         }).catch(err => {
-                            console.log('Error sharing:', err);
-                            // Fallback to download if sharing fails
-                            downloadReceiptFallback(blob);
+                            console.log('Sharing cancelled or failed');
+                            // Show modal as fallback
+                            document.getElementById('shareModal').classList.add('active');
                         });
-                    } else {
-                        // Fallback for browsers that don't support Web Share API
-                        document.getElementById('shareModal').classList.add('active');
-                    }
+                    });
                 });
-            });
+            } else {
+                // Desktop or devices without Web Share API - show modal
+                document.getElementById('shareModal').classList.add('active');
+            }
         }
 
         function closeModal() {
