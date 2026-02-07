@@ -252,6 +252,30 @@
             font-size: 16px;
         }
 
+        .quantity-select {
+            margin-left: 12px;
+            margin-right: 12px;
+            padding: 8px 12px;
+            border: 2px solid #E8DFCE;
+            border-radius: 8px;
+            background: white;
+            color: #2D2D2D;
+            font-weight: 600;
+            font-size: 14px;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .quantity-select:hover {
+            border-color: #F4A261;
+        }
+
+        .quantity-select:focus {
+            outline: none;
+            border-color: #F4A261;
+            box-shadow: 0 0 0 3px rgba(244, 162, 97, 0.15);
+        }
+
         .button-group {
             display: flex;
             gap: 14px;
@@ -529,6 +553,7 @@
             .checkbox-group {
                 padding: 14px;
                 margin-bottom: 10px;
+                flex-wrap: wrap;
             }
 
             .item-label {
@@ -537,6 +562,13 @@
 
             .item-price {
                 font-size: 14px;
+            }
+
+            .quantity-select {
+                margin-left: 10px;
+                margin-right: 10px;
+                padding: 6px 10px;
+                font-size: 12px;
             }
 
             .button-group {
@@ -728,6 +760,13 @@
                 margin-left: 8px;
             }
 
+            .quantity-select {
+                margin-left: 8px;
+                margin-right: 0;
+                padding: 6px 8px;
+                font-size: 11px;
+            }
+
             .button-group {
                 flex-direction: column;
                 gap: 8px;
@@ -910,6 +949,11 @@
                 min-width: 45px;
                 padding: 8px 6px;
             }
+
+            .quantity-select {
+                padding: 4px 6px;
+                font-size: 10px;
+            }
         }
 
         @media print {
@@ -998,413 +1042,395 @@
             border: 2px solid #F4A261;
         }
 
+        .btn-cancel:hover {
+            background: #FFFBF6;
+        }
+
         .btn-confirm {
             background: #F4A261;
             color: white;
+        }
+
+        .btn-confirm:hover {
+            background: #E8935A;
         }
     </style>
 </head>
 <body>
     <div class="app-header">
         <h1 class="app-title">Shankara Prakashana Samithi</h1>
-        <p class="app-subtitle">Books Payment Receipt</p>
+        <p class="app-subtitle">Receipt Generator</p>
     </div>
 
     <div class="container">
+        <!-- Form Section -->
         <div class="form-section">
-            <h1>📝 Receipt Details</h1>
+            <h1>Create Receipt</h1>
 
+            <!-- Date Picker -->
             <div class="date-picker-container">
                 <label class="date-picker-label">Select Date</label>
                 <div class="date-pills" id="datePills"></div>
-                <p style="font-size: 12px; color: #8B7D7D;">Choose a date from the last 7 days</p>
-                <input type="date" id="receiptDate" style="display: none;" required>
+                <input type="date" id="customDate" style="display: none; width: 100%; padding: 14px; border: 2px solid #E8DFCE; border-radius: 12px; font-size: 14px; margin-top: 8px;">
+            </div>
+
+            <!-- Donor Details -->
+            <div class="form-group">
+                <label>Donor Name</label>
+                <input type="text" id="donorName" placeholder="Enter donor name">
             </div>
 
             <div class="form-group">
-                <label>Payer Name *</label>
-                <input type="text" id="payerName" placeholder="Enter full name" required>
+                <label>Phone Number</label>
+                <input type="text" id="phone" placeholder="Enter phone number">
             </div>
 
             <div class="form-group">
-                <label>Postal Address *</label>
-                <textarea id="postalAddress" placeholder="Enter complete postal address" required></textarea>
+                <label>Address</label>
+                <textarea id="address" placeholder="Enter address"></textarea>
             </div>
 
-            <div class="form-group">
-                <label>Remarks</label>
-                <textarea id="remarks" placeholder="Enter any additional remarks (optional)"></textarea>
-            </div>
-
+            <!-- Items Section -->
             <div class="items-section">
                 <h2>Select Books</h2>
+                
                 <label class="checkbox-group">
-                    <input type="checkbox" name="item" value="Full Set" data-price="5000">
-                    <span
+                    <input type="checkbox" value="Full Set" data-price="5000" class="item-checkbox">
                     <span class="item-label">Full Set</span>
+                    <select class="quantity-select" data-base-price="5000">
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                        <option value="4">4</option>
+                        <option value="5">5</option>
+                    </select>
                     <span class="item-price">₹5000</span>
                 </label>
+
                 <label class="checkbox-group">
-                    <input type="checkbox" name="item" value="Ramayana" data-price="1000">
+                    <input type="checkbox" value="Ramayana" data-price="3000" class="item-checkbox">
                     <span class="item-label">Ramayana</span>
+                    <select class="quantity-select" data-base-price="3000">
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                        <option value="4">4</option>
+                        <option value="5">5</option>
+                    </select>
                     <span class="item-price">₹3000</span>
                 </label>
-<label class="checkbox-group">
-                    <input type="checkbox" name="item" value="Brahmantaranga" data-price="1000">
+
+                <label class="checkbox-group">
+                    <input type="checkbox" value="Brahmantaranga" data-price="1000" class="item-checkbox">
                     <span class="item-label">Brahmantaranga</span>
+                    <select class="quantity-select" data-base-price="1000">
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                        <option value="4">4</option>
+                        <option value="5">5</option>
+                    </select>
                     <span class="item-price">₹1000</span>
                 </label>
+
                 <label class="checkbox-group">
-                    <input type="checkbox" name="item" value="Geetantaranga" data-price="1000">
+                    <input type="checkbox" value="Geetantaranga" data-price="900" class="item-checkbox">
                     <span class="item-label">Geetantaranga</span>
+                    <select class="quantity-select" data-base-price="900">
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                        <option value="4">4</option>
+                        <option value="5">5</option>
+                    </select>
                     <span class="item-price">₹900</span>
                 </label>
+
                 <label class="checkbox-group">
-                    <input type="checkbox" name="item" value="Sankshipta Ramayana" data-price="800">
+                    <input type="checkbox" value="Sankshipta Ramayana" data-price="400" class="item-checkbox">
                     <span class="item-label">Sankshipta Ramayana</span>
+                    <select class="quantity-select" data-base-price="400">
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                        <option value="4">4</option>
+                        <option value="5">5</option>
+                    </select>
                     <span class="item-price">₹400</span>
                 </label>
+
                 <label class="checkbox-group">
-                    <input type="checkbox" name="item" value="Kathopanishath" data-price="800">
+                    <input type="checkbox" value="Kathopanishath" data-price="400" class="item-checkbox">
                     <span class="item-label">Kathopanishath</span>
+                    <select class="quantity-select" data-base-price="400">
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                        <option value="4">4</option>
+                        <option value="5">5</option>
+                    </select>
                     <span class="item-price">₹400</span>
                 </label>
+
                 <label class="checkbox-group">
-                    <input type="checkbox" name="item" value="Saundarya Lahari" data-price="800">
+                    <input type="checkbox" value="Saundarya Lahari" data-price="300" class="item-checkbox">
                     <span class="item-label">Saundarya Lahari</span>
+                    <select class="quantity-select" data-base-price="300">
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                        <option value="4">4</option>
+                        <option value="5">5</option>
+                    </select>
                     <span class="item-price">₹300</span>
                 </label>
             </div>
 
+            <!-- Action Buttons -->
             <div class="button-group">
                 <button class="btn-generate" onclick="generateReceipt()">Generate Receipt</button>
-                <button class="btn-reset" onclick="resetForm()">Clear Form</button>
+                <button class="btn-reset" onclick="resetForm()">Reset</button>
             </div>
         </div>
 
+        <!-- Receipt Section -->
         <div class="receipt-section">
-            <div id="receiptContent" class="receipt-content">
+            <div id="receipt" class="receipt-content">
                 <div class="receipt-header">
-                    <div class="receipt-title">✓ Receipt</div>
-                    <div class="receipt-subtitle" id="receiptId"></div>
+                    <div class="receipt-title">Receipt</div>
+                    <div class="receipt-subtitle">Shankara Prakashana Samithi</div>
+                </div>
+
+                <div class="receipt-field">
+                    <div class="receipt-field-label">Receipt No</div>
+                    <div class="receipt-field-value" id="receiptNo">---</div>
                 </div>
 
                 <div class="receipt-field">
                     <div class="receipt-field-label">Date</div>
-                    <div class="receipt-field-value" id="receiptDateDisplay"></div>
+                    <div class="receipt-field-value" id="receiptDate">---</div>
                 </div>
 
                 <div class="receipt-field">
                     <div class="receipt-field-label">Donor Name</div>
-                    <div class="receipt-field-value" id="receiptPayerDisplay"></div>
+                    <div class="receipt-field-value" id="displayDonorName">---</div>
                 </div>
 
                 <div class="receipt-field">
-                    <div class="receipt-field-label">Postal Address</div>
-                    <div class="receipt-field-value" id="receiptAddressDisplay" style="white-space: pre-wrap;"></div>
+                    <div class="receipt-field-label">Phone</div>
+                    <div class="receipt-field-value" id="displayPhone">---</div>
                 </div>
 
-                <div id="receiptItemsContainer" class="receipt-items"></div>
+                <div class="receipt-field">
+                    <div class="receipt-field-label">Address</div>
+                    <div class="receipt-field-value" id="displayAddress">---</div>
+                </div>
+
+                <div class="receipt-items" id="receiptItems"></div>
 
                 <div class="receipt-total">
-                    <span class="total-label">Total Amount</span>
-                    <span class="total-amount" id="receiptTotalDisplay">₹0</span>
-                </div>
-
-                <div class="receipt-field" id="remarksContainer" style="display: none;">
-                    <div class="receipt-field-label">Remarks</div>
-                    <div class="receipt-field-value" id="receiptRemarksDisplay" style="white-space: pre-wrap;"></div>
+                    <div class="total-label">Total</div>
+                    <div class="total-amount" id="totalAmount">₹0</div>
                 </div>
 
                 <div class="receipt-actions">
-                    <button class="btn-share" onclick="shareOnWhatsApp()">📱 Share on WhatsApp</button>
-                    <button class="btn-print" onclick="printReceipt()">🖨️ Download as PNG</button>
+                    <button class="btn-share" onclick="shareReceipt()">Share</button>
+                    <button class="btn-print" onclick="printReceipt()">Print</button>
                 </div>
             </div>
 
-            <div id="emptyReceipt" class="empty-receipt">
-                <p>📋 Fill in the donation details and select books to generate a receipt</p>
+            <div class="empty-receipt">
+                <p>Fill the form and click "Generate Receipt" to see your receipt here.</p>
             </div>
         </div>
     </div>
 
-    <div id="whatsappModal" class="modal">
+    <!-- Share Modal -->
+    <div id="shareModal" class="modal">
         <div class="modal-content">
             <h2>Share Receipt</h2>
-            <p>Preparing your receipt image...</p>
+            <p>Choose how you'd like to share this receipt:</p>
             <div class="modal-buttons">
-                <button class="btn-cancel" onclick="closeModal()">Close</button>
+                <button class="btn-cancel" onclick="closeModal()">Cancel</button>
+                <button class="btn-confirm" onclick="downloadReceipt()">Download as Image</button>
             </div>
         </div>
     </div>
 
     <script>
-        // Generate date pills for last 7 days
-        function generateDatePills() {
-            const today = new Date();
-            const datePillsContainer = document.getElementById('datePills');
-            const hiddenDateInput = document.getElementById('receiptDate');
+        const items = [
+            { name: 'Full Set', price: 5000 },
+            { name: 'Ramayana', price: 3000 },
+            { name: 'Brahmantaranga', price: 1000 },
+            { name: 'Geetantaranga', price: 900 },
+            { name: 'Sankshipta Ramayana', price: 400 },
+            { name: 'Kathopanishath', price: 400 },
+            { name: 'Saundarya Lahari', price: 300 }
+        ];
+
+        let selectedDate = new Date();
+        let receiptNumber = Math.floor(Math.random() * 100000) + 1000;
+
+        // Initialize date pills
+        function initializeDatePills() {
+            const container = document.getElementById('datePills');
+            container.innerHTML = '';
             
-            datePillsContainer.innerHTML = '';
-            
-            for (let i = 6; i >= 0; i--) {
-                const date = new Date(today);
-                date.setDate(date.getDate() - i);
+            for (let i = -3; i <= 3; i++) {
+                const date = new Date();
+                date.setDate(date.getDate() + i);
                 
-                const dayName = date.toLocaleDateString('en-US', { weekday: 'short' }).substring(0, 3).toUpperCase();
-                const dateNum = date.getDate();
-                const dateStr = date.toISOString().split('T')[0];
-                
-                const pill = document.createElement('button');
-                pill.type = 'button';
-                pill.className = 'date-pill' + (i === 0 ? ' active' : '');
-                pill.innerHTML = `
-                    <div class="date-pill-day">${dayName}</div>
-                    <div class="date-pill-date">${dateNum}</div>
+                const button = document.createElement('button');
+                button.className = 'date-pill' + (i === 0 ? ' active' : '');
+                button.innerHTML = `
+                    <div class="date-pill-day">${date.toLocaleDateString('en-US', { weekday: 'short' })}</div>
+                    <div class="date-pill-date">${date.getDate()}</div>
                 `;
                 
-                pill.addEventListener('click', (e) => {
-                    e.preventDefault();
-                    selectDatePill(pill, dateStr);
-                });
-                
-                if (i === 0) {
-                    hiddenDateInput.value = dateStr;
-                }
-                
-                datePillsContainer.appendChild(pill);
+                button.addEventListener('click', () => selectDate(date));
+                container.appendChild(button);
             }
-            
-            // Auto-scroll to today's date pill
-            setTimeout(() => {
-                const activePill = datePillsContainer.querySelector('.date-pill.active');
-                if (activePill) {
-                    activePill.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'center' });
-                }
-            }, 100);
         }
 
-        function selectDatePill(pillElement, dateStr) {
-            document.querySelectorAll('.date-pill').forEach(p => p.classList.remove('active'));
-            pillElement.classList.add('active');
-            document.getElementById('receiptDate').value = dateStr;
+        function selectDate(date) {
+            selectedDate = date;
             
-            // Auto-scroll the clicked pill into center view
-            pillElement.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'center' });
-        }
-
-        function generateReceipt() {
-            const payerName = document.getElementById('payerName').value.trim();
-            const postalAddress = document.getElementById('postalAddress').value.trim();
-            const receiptDate = document.getElementById('receiptDate').value;
-            const remarks = document.getElementById('remarks').value.trim();
-            
-            const selectedItems = Array.from(document.querySelectorAll('input[name="item"]:checked')).map(checkbox => ({
-                name: checkbox.value,
-                price: parseInt(checkbox.dataset.price)
-            }));
-
-            // Validation
-            if (!payerName) {
-                alert('Please enter donor name');
-                return;
-            }
-            if (!postalAddress) {
-                alert('Please enter postal address');
-                return;
-            }
-            if (!receiptDate) {
-                alert('Please select a date');
-                return;
-            }
-            if (selectedItems.length === 0) {
-                alert('Please select at least one book');
-                return;
-            }
-
-            // Calculate total
-            const total = selectedItems.reduce((sum, item) => sum + item.price, 0);
-
-            // Generate receipt ID
-            const receiptId = 'REC-' + Date.now();
-
-            // Display receipt
-            document.getElementById('emptyReceipt').style.display = 'none';
-            document.getElementById('receiptContent').classList.add('visible');
-
-            document.getElementById('receiptId').textContent = `Receipt #${receiptId}`;
-            
-            const date = new Date(receiptDate);
-            document.getElementById('receiptDateDisplay').textContent = date.toLocaleDateString('en-US', { 
-                year: 'numeric', 
-                month: 'long', 
-                day: 'numeric' 
+            // Update pill styling
+            document.querySelectorAll('.date-pill').forEach((pill, index) => {
+                pill.classList.remove('active');
+                if (index === 3) pill.classList.add('active'); // Middle pill (today)
             });
             
-            document.getElementById('receiptPayerDisplay').textContent = payerName;
-            document.getElementById('receiptAddressDisplay').textContent = postalAddress;
-            document.getElementById('receiptTotalDisplay').textContent = '₹' + total.toLocaleString('en-IN');
+            // Find and activate the correct pill
+            const pills = document.querySelectorAll('.date-pill');
+            let activeIndex = 0;
+            pills.forEach((pill, index) => {
+                const pillDate = new Date();
+                pillDate.setDate(pillDate.getDate() + (index - 3));
+                if (pillDate.toDateString() === date.toDateString()) {
+                    pill.classList.add('active');
+                }
+            });
+        }
 
-            // Display items
-            const itemsContainer = document.getElementById('receiptItemsContainer');
-            itemsContainer.innerHTML = selectedItems.map(item => `
-                <div class="receipt-item">
-                    <span class="receipt-item-name">${item.name}</span>
-                    <span class="receipt-item-price">₹${item.price.toLocaleString('en-IN')}</span>
-                </div>
-            `).join('');
+        // Handle quantity changes
+        document.addEventListener('change', function(e) {
+            if (e.target.classList.contains('quantity-select')) {
+                const checkbox = e.target.closest('.checkbox-group').querySelector('.checkbox-group input[type="checkbox"]');
+                const priceSpan = e.target.closest('.checkbox-group').querySelector('.item-price');
+                const quantity = parseInt(e.target.value);
+                const basePrice = parseInt(e.target.dataset.basePrice);
+                const newPrice = basePrice * quantity;
+                
+                checkbox.dataset.price = newPrice;
+                priceSpan.textContent = '₹' + newPrice.toLocaleString();
+            }
+        });
 
-            // Display remarks if present
-            const remarksContainer = document.getElementById('remarksContainer');
-            if (remarks) {
-                remarksContainer.style.display = 'block';
-                document.getElementById('receiptRemarksDisplay').textContent = remarks;
-            } else {
-                remarksContainer.style.display = 'none';
+        function generateReceipt() {
+            const donorName = document.getElementById('donorName').value;
+            const phone = document.getElementById('phone').value;
+            const address = document.getElementById('address').value;
+
+            if (!donorName || !phone || !address) {
+                alert('Please fill all donor details');
+                return;
             }
 
-            // Store data for sharing
-            window.currentReceipt = {
-                id: receiptId,
-                date: date.toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' }),
-                payerName: payerName,
-                address: postalAddress,
-                items: selectedItems,
-                total: total,
-                remarks: remarks
-            };
+            const selectedItems = [];
+            let total = 0;
+
+            document.querySelectorAll('.item-checkbox:checked').forEach(checkbox => {
+                const itemName = checkbox.value;
+                const itemPrice = parseInt(checkbox.dataset.price);
+                selectedItems.push({ name: itemName, price: itemPrice });
+                total += itemPrice;
+            });
+
+            if (selectedItems.length === 0) {
+                alert('Please select at least one item');
+                return;
+            }
+
+            // Update receipt
+            document.getElementById('receiptNo').textContent = 'SPS-' + receiptNumber;
+            document.getElementById('receiptDate').textContent = selectedDate.toLocaleDateString('en-GB');
+            document.getElementById('displayDonorName').textContent = donorName;
+            document.getElementById('displayPhone').textContent = phone;
+            document.getElementById('displayAddress').textContent = address;
+
+            const receiptItemsHtml = selectedItems.map(item => 
+                `<div class="receipt-item">
+                    <div class="receipt-item-name">${item.name}</div>
+                    <div class="receipt-item-price">₹${item.price.toLocaleString()}</div>
+                </div>`
+            ).join('');
+
+            document.getElementById('receiptItems').innerHTML = receiptItemsHtml;
+            document.getElementById('totalAmount').textContent = '₹' + total.toLocaleString();
+
+            // Show receipt
+            document.getElementById('receipt').classList.add('visible');
+            document.querySelector('.empty-receipt').style.display = 'none';
         }
 
         function resetForm() {
-            document.getElementById('payerName').value = '';
-            document.getElementById('postalAddress').value = '';
-            document.getElementById('remarks').value = '';
-            document.querySelectorAll('input[name="item"]').forEach(checkbox => checkbox.checked = false);
+            document.getElementById('donorName').value = '';
+            document.getElementById('phone').value = '';
+            document.getElementById('address').value = '';
             
-            document.getElementById('receiptContent').classList.remove('visible');
-            document.getElementById('emptyReceipt').style.display = 'block';
-            
-            generateDatePills();
+            document.querySelectorAll('.item-checkbox').forEach(checkbox => {
+                checkbox.checked = false;
+            });
+
+            document.querySelectorAll('.quantity-select').forEach(select => {
+                select.value = '1';
+            });
+
+            document.querySelectorAll('.item-price').forEach((span, index) => {
+                const basePrice = items[index].price;
+                span.textContent = '₹' + basePrice.toLocaleString();
+            });
+
+            document.getElementById('receipt').classList.remove('visible');
+            document.querySelector('.empty-receipt').style.display = 'block';
         }
 
         function printReceipt() {
-            // Create a wrapper with padding
-            const receiptElement = document.getElementById('receiptContent');
-            const receiptWrapper = document.createElement('div');
-            receiptWrapper.style.padding = '40px';
-            receiptWrapper.style.backgroundColor = '#FEF9F2';
-            receiptWrapper.style.borderRadius = '20px';
-            
-            // Clone the receipt content without buttons
-            const clonedContent = receiptElement.cloneNode(true);
-            const actionsButton = clonedContent.querySelector('.receipt-actions');
-            if (actionsButton) {
-                actionsButton.style.display = 'none';
-            }
-            
-            receiptWrapper.appendChild(clonedContent);
-            document.body.appendChild(receiptWrapper);
-            
-            html2canvas(receiptWrapper, {
-                backgroundColor: '#FEF9F2',
-                scale: 2,
-                logging: false
-            }).then(canvas => {
-                const link = document.createElement('a');
-                link.href = canvas.toDataURL('image/png');
-                link.download = `Receipt-${window.currentReceipt.id}.png`;
-                link.click();
-                document.body.removeChild(receiptWrapper);
-            }).catch(err => {
-                console.error('Error generating image:', err);
-                alert('Error generating PNG. Please try again.');
-                document.body.removeChild(receiptWrapper);
-            });
+            window.print();
         }
 
-        function shareOnWhatsApp() {
-            // Create a wrapper with padding
-            const receiptElement = document.getElementById('receiptContent');
-            const receiptWrapper = document.createElement('div');
-            receiptWrapper.style.padding = '40px';
-            receiptWrapper.style.backgroundColor = '#FEF9F2';
-            receiptWrapper.style.borderRadius = '20px';
-            
-            // Clone the receipt content without buttons
-            const clonedContent = receiptElement.cloneNode(true);
-            const actionsButton = clonedContent.querySelector('.receipt-actions');
-            if (actionsButton) {
-                actionsButton.style.display = 'none';
-            }
-            
-            receiptWrapper.appendChild(clonedContent);
-            document.body.appendChild(receiptWrapper);
-            
-            html2canvas(receiptWrapper, {
-                backgroundColor: '#FEF9F2',
-                scale: 2,
-                logging: false
-            }).then(canvas => {
-                document.body.removeChild(receiptWrapper);
-                canvas.toBlob(blob => {
-                    const file = new File([blob], `Receipt-${window.currentReceipt.id}.png`, { type: 'image/png' });
-                    
-                    // Check if Web Share API is available
-                    if (navigator.share && navigator.canShare({ files: [file] })) {
-                        navigator.share({
-                            files: [file],
-                            title: 'Donation Receipt',
-                            text: '🙏 Shankara Prakashana Samithi - Donation Receipt'
-                        }).then(() => {
-                            console.log('Receipt shared successfully');
-                        }).catch(err => {
-                            if (err.name !== 'AbortError') {
-                                console.error('Error sharing:', err);
-                            }
-                        });
-                    } else {
-                        // Fallback: Copy image to clipboard and show instructions
-                        navigator.clipboard.write([
-                            new ClipboardItem({ 'image/png': blob })
-                        ]).then(() => {
-                            showWhatsAppModal('Image Copied!', 'Receipt image has been copied to your clipboard. Open WhatsApp and paste it in the chat.');
-                        }).catch(err => {
-                            console.error('Error copying to clipboard:', err);
-                            // Final fallback: Download the image
-                            const link = document.createElement('a');
-                            link.href = canvas.toDataURL('image/png');
-                            link.download = `Receipt-${window.currentReceipt.id}.png`;
-                            link.click();
-                            showWhatsAppModal('Image Downloaded', 'Receipt image has been downloaded. You can now share it on WhatsApp.');
-                        });
-                    }
-                });
-            }).catch(err => {
-                console.error('Error generating image:', err);
-                alert('Error generating PNG. Please try again.');
-                document.body.removeChild(receiptWrapper);
-            });
-        }
-
-        function showWhatsAppModal(title, message) {
-            const modal = document.getElementById('whatsappModal');
-            const modalContent = modal.querySelector('.modal-content');
-            modalContent.innerHTML = `
-                <h2>${title}</h2>
-                <p>${message}</p>
-                <div class="modal-buttons">
-                    <button class="btn-cancel" onclick="closeModal()">Close</button>
-                </div>
-            `;
-            modal.classList.add('active');
+        function shareReceipt() {
+            document.getElementById('shareModal').classList.add('active');
         }
 
         function closeModal() {
-            document.getElementById('whatsappModal').classList.remove('active');
+            document.getElementById('shareModal').classList.remove('active');
         }
 
-        // Initialize on page load
-        document.addEventListener('DOMContentLoaded', generateDatePills);
+        function downloadReceipt() {
+            const receiptDiv = document.getElementById('receipt');
+            html2canvas(receiptDiv, {
+                backgroundColor: '#FEF9F2',
+                scale: 2
+            }).then(canvas => {
+                const link = document.createElement('a');
+                link.href = canvas.toDataURL();
+                link.download = 'receipt-' + new Date().getTime() + '.png';
+                link.click();
+                closeModal();
+            });
+        }
+
+        window.addEventListener('click', function(e) {
+            const modal = document.getElementById('shareModal');
+            if (e.target === modal) {
+                closeModal();
+            }
+        });
+
+        // Initialize
+        initializeDatePills();
     </script>
 </body>
 </html>
