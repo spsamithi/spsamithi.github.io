@@ -498,14 +498,17 @@
         .btn-share,
         .btn-print {
             flex: 1;
-            padding: 14px;
+            padding: 16px 20px;
             border: 2px solid #F4A261;
             background: white;
             color: #F4A261;
             border-radius: 12px;
-            font-weight: 600;
+            font-weight: 700;
+            font-size: 15px;
             cursor: pointer;
             transition: all 0.3s;
+            display: block !important;
+            visibility: visible !important;
         }
 
         .btn-share:hover,
@@ -1031,9 +1034,12 @@
             }
 
             .app-header,
-            .form-section,
-            .receipt-actions {
+            .form-section {
                 display: none;
+            }
+
+            .receipt-actions {
+                display: none !important;
             }
 
             .container {
