@@ -1583,7 +1583,33 @@
         }
 
         function shareReceipt() {
-            document.getElementById('shareModal').classList.add('active');
+            const receiptDiv = document.getElementById('receipt');
+            html2canvas(receiptDiv, {
+                backgroundColor: '#FEF9F2',
+                scale: 2
+            }).then(canvas => {
+                canvas.toBlob(blob => {
+                    const file = new File([blob], 'receipt-' + new Date().getTime() + '.png', { type: 'image/png' });
+                    
+                    // Check if Web Share API is available
+                    if (navigator.share) {
+                        navigator.share({
+                            title: 'Shankara Prakashana Samithi Receipt',
+                            text: 'Here is my donation receipt',
+                            files: [file]
+                        }).then(() => {
+                            console.log('Receipt shared successfully');
+                        }).catch(err => {
+                            console.log('Error sharing:', err);
+                            // Fallback to download if sharing fails
+                            downloadReceiptFallback(blob);
+                        });
+                    } else {
+                        // Fallback for browsers that don't support Web Share API
+                        document.getElementById('shareModal').classList.add('active');
+                    }
+                });
+            });
         }
 
         function closeModal() {
@@ -1596,12 +1622,19 @@
                 backgroundColor: '#FEF9F2',
                 scale: 2
             }).then(canvas => {
-                const link = document.createElement('a');
-                link.href = canvas.toDataURL();
-                link.download = 'receipt-' + new Date().getTime() + '.png';
-                link.click();
-                closeModal();
+                canvas.toBlob(blob => {
+                    downloadReceiptFallback(blob);
+                    closeModal();
+                });
             });
+        }
+
+        function downloadReceiptFallback(blob) {
+            const link = document.createElement('a');
+            link.href = URL.createObjectURL(blob);
+            link.download = 'receipt-' + new Date().getTime() + '.png';
+            link.click();
+            URL.revokeObjectURL(link.href);
         }
 
         window.addEventListener('click', function(e) {
