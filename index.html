@@ -1461,15 +1461,13 @@
         function selectDate(date) {
             selectedDate = date;
             
-            // Update pill styling
-            document.querySelectorAll('.date-pill').forEach((pill, index) => {
+            // Remove active class from all pills
+            document.querySelectorAll('.date-pill').forEach(pill => {
                 pill.classList.remove('active');
-                if (index === 3) pill.classList.add('active'); // Middle pill (today)
             });
             
             // Find and activate the correct pill
             const pills = document.querySelectorAll('.date-pill');
-            let activeIndex = 0;
             pills.forEach((pill, index) => {
                 const pillDate = new Date();
                 pillDate.setDate(pillDate.getDate() + (index - 3));
