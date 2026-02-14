@@ -14,13 +14,13 @@
 
         body {
             font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', sans-serif;
-            background: #FDFAF5;
+            background: #1F6B4D;
             min-height: 100vh;
             padding: 20px;
             display: flex;
             flex-direction: column;
             align-items: center;
-            color: #2D2D2D;
+            color: #FFFFFF;
         }
 
         @media (max-width: 768px) {
@@ -69,14 +69,14 @@
         .app-title {
             font-size: 32px;
             font-weight: 700;
-            color: #F4A261;
+            color: #FFFFFF;
             margin-bottom: 5px;
             letter-spacing: 0.5px;
         }
 
         .app-subtitle {
             font-size: 14px;
-            color: #8B7D7D;
+            color: #E0E0E0;
             font-weight: 400;
         }
 
@@ -97,11 +97,11 @@
         }
 
         .form-section {
-            background: #FEF9F2;
+            background: #2D5A4C;
             border-radius: 20px;
             padding: 40px;
-            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
-            border: 1px solid rgba(244, 162, 97, 0.1);
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+            border: 2px solid #4A8A73;
         }
 
         @media (max-width: 768px) {
@@ -118,7 +118,7 @@
         }
 
         .form-section h1 {
-            color: #F4A261;
+            color: #FFFFFF;
             margin-bottom: 30px;
             font-size: 22px;
             text-align: center;
@@ -132,9 +132,9 @@
         .form-group label {
             display: block;
             margin-bottom: 10px;
-            color: #2D2D2D;
+            color: #FFFFFF;
             font-weight: 600;
-            font-size: 14px;
+            font-size: 16px;
             letter-spacing: 0.3px;
         }
 
@@ -145,9 +145,9 @@
         .date-picker-label {
             display: block;
             margin-bottom: 12px;
-            color: #2D2D2D;
+            color: #FFFFFF;
             font-weight: 600;
-            font-size: 14px;
+            font-size: 16px;
             letter-spacing: 0.3px;
         }
 
@@ -216,13 +216,14 @@
         }
 
         .date-pill:hover {
-            background: #F5E8DC;
+            background: #3D6B5C;
+            color: #FFFFFF;
         }
 
         .date-pill.active {
-            background: #F4A261;
+            background: #7AB99A;
             color: white;
-            box-shadow: 0 6px 16px rgba(244, 162, 97, 0.35);
+            box-shadow: 0 6px 16px rgba(122, 185, 154, 0.35);
         }
 
         .date-pill.active .date-pill-day {
@@ -238,13 +239,13 @@
             text-transform: uppercase;
             letter-spacing: 0.6px;
             margin-bottom: 6px;
-            color: #8B7D7D;
+            color: #B0B0B0;
         }
 
         .date-pill-date {
             font-size: 18px;
             font-weight: 700;
-            color: #2D2D2D;
+            color: #FFFFFF;
         }
 
         @media (max-width: 768px) {
@@ -263,12 +264,12 @@
         .form-group textarea {
             width: 100%;
             padding: 14px;
-            border: 2px solid #E8DFCE;
+            border: 2px solid #4A8A73;
             border-radius: 12px;
             font-family: inherit;
             font-size: 14px;
             color: #2D2D2D;
-            background: white;
+            background: #FFFFFF;
             transition: all 0.3s;
         }
 
@@ -314,19 +315,19 @@
         }
 
         .items-section h2 {
-            color: #2D2D2D;
+            color: #FFFFFF;
             margin-bottom: 18px;
-            font-size: 16px;
+            font-size: 18px;
             font-weight: 600;
             letter-spacing: 0.3px;
         }
 
         .checkbox-group {
             display: flex;
-            align-items: center;
+            flex-direction: column;
             padding: 16px;
-            background: white;
-            border: 2px solid #E8DFCE;
+            background: #3D6B5C;
+            border: 2px solid #5A9A7F;
             border-radius: 12px;
             margin-bottom: 12px;
             cursor: pointer;
@@ -349,24 +350,31 @@
         }
 
         .checkbox-group:hover {
-            border-color: #F4A261;
-            background: #FFFBF6;
+            border-color: #7AB99A;
+            background: #4A7B6C;
         }
 
         .checkbox-group input[type="checkbox"] {
             width: 20px;
             height: 20px;
             cursor: pointer;
-            margin-right: 14px;
-            accent-color: #F4A261;
+            margin-bottom: 12px;
+            accent-color: #7AB99A;
             border-radius: 4px;
         }
 
         .item-label {
-            flex: 1;
-            color: #2D2D2D;
-            font-weight: 500;
-            font-size: 14px;
+            color: #FFFFFF;
+            font-weight: 600;
+            font-size: 16px;
+            margin-bottom: 12px;
+        }
+
+        .item-controls {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            width: 100%;
         }
 
         .item-price {
@@ -429,35 +437,35 @@
         }
 
         .quantity-select:hover {
-            border-color: #F4A261;
+            border-color: #7AB99A;
         }
 
         .quantity-select:focus {
             outline: none;
-            border-color: #F4A261;
-            box-shadow: 0 0 0 3px rgba(244, 162, 97, 0.15);
+            border-color: #7AB99A;
+            box-shadow: 0 0 0 3px rgba(122, 185, 154, 0.15);
         }
 
         .donation-input {
             padding: 8px 12px;
-            border: 2px solid #E8DFCE;
+            border: 2px solid #5A9A7F;
             border-radius: 8px;
             font-family: inherit;
             font-size: 14px;
             color: #2D2D2D;
-            background: white;
+            background: #FFFFFF;
             transition: all 0.3s;
         }
 
         .donation-input::placeholder {
-            color: #B8A89D;
+            color: #999999;
         }
 
         .donation-input:focus {
             outline: none;
-            border-color: #F4A261;
-            background: #FFFBF6;
-            box-shadow: 0 0 0 3px rgba(244, 162, 97, 0.15);
+            border-color: #7AB99A;
+            background: #FFFFFF;
+            box-shadow: 0 0 0 3px rgba(122, 185, 154, 0.15);
         }
 
         @media (max-width: 768px) {
@@ -517,34 +525,34 @@
         }
 
         .btn-generate {
-            background: #F4A261;
+            background: #7AB99A;
             color: white;
-            box-shadow: 0 4px 15px rgba(244, 162, 97, 0.3);
+            box-shadow: 0 4px 15px rgba(122, 185, 154, 0.3);
         }
 
         .btn-generate:hover {
-            background: #E8935A;
+            background: #5A9A7F;
             transform: translateY(-2px);
-            box-shadow: 0 6px 20px rgba(244, 162, 97, 0.4);
+            box-shadow: 0 6px 20px rgba(122, 185, 154, 0.4);
         }
 
         .btn-reset {
-            background: white;
-            color: #F4A261;
-            border: 2px solid #F4A261;
+            background: #FFFFFF;
+            color: #1F6B4D;
+            border: 2px solid #7AB99A;
         }
 
         .btn-reset:hover {
-            background: #FFFBF6;
+            background: #E8F5F1;
             transform: translateY(-2px);
         }
 
         .receipt-section {
-            background: #FEF9F2;
+            background: #2D5A4C;
             border-radius: 20px;
             padding: 40px;
-            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
-            border: 1px solid rgba(244, 162, 97, 0.1);
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+            border: 2px solid #4A8A73;
             position: sticky;
             top: 20px;
         }
@@ -599,11 +607,11 @@
         .receipt-header {
             margin-bottom: 28px;
             padding-bottom: 20px;
-            border-bottom: 3px solid #F4A261;
+            border-bottom: 3px solid #7AB99A;
         }
 
         .receipt-title {
-            color: #F4A261;
+            color: #7AB99A;
             font-size: 28px;
             font-weight: 700;
             margin-bottom: 8px;
@@ -611,7 +619,7 @@
         }
 
         .receipt-subtitle {
-            color: #8B7D7D;
+            color: #CCCCCC;
             font-size: 13px;
             font-weight: 600;
             letter-spacing: 0.3px;
@@ -640,10 +648,10 @@
         .receipt-details {
             text-align: left;
             margin-bottom: 28px;
-            background: #FFFBF6;
+            background: #1F6B4D;
             padding: 18px;
             border-radius: 12px;
-            border: 1px solid #E8DFCE;
+            border: 1px solid #4A8A73;
         }
 
         .receipt-field {
@@ -659,7 +667,7 @@
         }
 
         .receipt-field-label {
-            color: #8B7D7D;
+            color: #B0B0B0;
             font-size: 11px;
             text-transform: uppercase;
             font-weight: 700;
@@ -669,7 +677,7 @@
         }
 
         .receipt-field-value {
-            color: #2D2D2D;
+            color: #FFFFFF;
             font-size: 14px;
             font-weight: 600;
             text-align: right;
@@ -679,8 +687,8 @@
         .receipt-items {
             margin: 28px 0;
             padding: 20px 0;
-            border-top: 2px solid #F4A261;
-            border-bottom: 2px solid #F4A261;
+            border-top: 2px solid #7AB99A;
+            border-bottom: 2px solid #7AB99A;
         }
 
         .receipt-items-header {
@@ -693,7 +701,7 @@
             font-weight: 700;
             font-size: 11px;
             text-transform: uppercase;
-            color: #F4A261;
+            color: #7AB99A;
             letter-spacing: 0.4px;
         }
 
@@ -703,7 +711,7 @@
             gap: 12px;
             align-items: center;
             padding: 14px 0;
-            border-bottom: 1px solid #E8DFCE;
+            border-bottom: 1px solid #4A8A73;
             font-size: 13px;
         }
 
@@ -713,26 +721,26 @@
         }
 
         .receipt-item-name {
-            color: #2D2D2D;
+            color: #FFFFFF;
             font-weight: 600;
             text-align: left;
         }
 
         .receipt-item-meta {
             font-size: 11px;
-            color: #8B7D7D;
+            color: #B0B0B0;
             margin-top: 4px;
             text-align: left;
         }
 
         .receipt-item-qty {
-            color: #2D2D2D;
+            color: #FFFFFF;
             font-weight: 600;
             text-align: center;
         }
 
         .receipt-item-price {
-            color: #F4A261;
+            color: #7AB99A;
             font-weight: 700;
             text-align: right;
         }
@@ -744,21 +752,21 @@
             margin-top: 24px;
             padding-top: 20px;
             padding-bottom: 20px;
-            background: #FFFBF6;
+            background: #1F6B4D;
             border-radius: 12px;
             padding: 20px;
-            border: 2px solid #F4A261;
+            border: 2px solid #7AB99A;
         }
 
         .total-label {
-            color: #2D2D2D;
+            color: #FFFFFF;
             font-size: 18px;
             font-weight: 700;
             text-align: left;
         }
 
         .total-amount {
-            color: #F4A261;
+            color: #7AB99A;
             font-size: 24px;
             font-weight: 700;
             text-align: right;
@@ -774,9 +782,9 @@
         .btn-print {
             flex: 1;
             padding: 16px 20px;
-            border: 2px solid #F4A261;
-            background: white;
-            color: #F4A261;
+            border: 2px solid #7AB99A;
+            background: #FFFFFF;
+            color: #1F6B4D;
             border-radius: 12px;
             font-weight: 700;
             font-size: 15px;
@@ -788,15 +796,15 @@
 
         .btn-share:hover,
         .btn-print:hover {
-            background: #F4A261;
-            color: white;
+            background: #7AB99A;
+            color: #FFFFFF;
             transform: translateY(-2px);
-            box-shadow: 0 4px 12px rgba(244, 162, 97, 0.3);
+            box-shadow: 0 4px 12px rgba(122, 185, 154, 0.3);
         }
 
         .empty-receipt {
             text-align: center;
-            color: #8B7D7D;
+            color: #B0B0B0;
             padding: 50px 20px;
             font-size: 14px;
             line-height: 1.6;
@@ -811,7 +819,7 @@
 
         .date-range p {
             font-size: 12px;
-            color: #8B7D7D;
+            color: #B0B0B0;
         }
 
         @media (max-width: 1024px) {
@@ -1348,24 +1356,24 @@
         }
 
         .modal-content {
-            background: #FEF9F2;
+            background: #2D5A4C;
             padding: 40px;
             border-radius: 20px;
             text-align: center;
             max-width: 420px;
-            border: 1px solid rgba(244, 162, 97, 0.1);
-            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
+            border: 2px solid #4A8A73;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
         }
 
         .modal-content h2 {
-            color: #F4A261;
+            color: #7AB99A;
             margin-bottom: 16px;
             font-size: 20px;
             font-weight: 700;
         }
 
         .modal-content p {
-            color: #2D2D2D;
+            color: #FFFFFF;
             margin-bottom: 24px;
             line-height: 1.6;
             font-size: 14px;
@@ -1386,22 +1394,22 @@
         }
 
         .btn-cancel {
-            background: white;
-            color: #F4A261;
-            border: 2px solid #F4A261;
+            background: #FFFFFF;
+            color: #1F6B4D;
+            border: 2px solid #7AB99A;
         }
 
         .btn-cancel:hover {
-            background: #FFFBF6;
+            background: #E8F5F1;
         }
 
         .btn-confirm {
-            background: #F4A261;
+            background: #7AB99A;
             color: white;
         }
 
         .btn-confirm:hover {
-            background: #E8935A;
+            background: #5A9A7F;
         }
     </style>
 </head>
@@ -1446,177 +1454,205 @@
                 <label class="checkbox-group">
                     <input type="checkbox" value="Saraswati Pramukha Poshakaru" data-price="100000" data-basePrice="100000" class="item-checkbox">
                     <span class="item-label">Saraswati Pramukha Poshakaru</span>
-                    <select class="quantity-select" data-base-price="100000">
-                        <option value="1">1</option>
-                        <option value="2">2</option>
-                        <option value="3">3</option>
-                        <option value="4">4</option>
-                        <option value="5">5</option>
-                    </select>
-                    <span class="item-price">₹100000</span>
+                    <div class="item-controls">
+                        <select class="quantity-select" data-base-price="100000">
+                            <option value="1">1</option>
+                            <option value="2">2</option>
+                            <option value="3">3</option>
+                            <option value="4">4</option>
+                            <option value="5">5</option>
+                        </select>
+                        <span class="item-price">₹100000</span>
+                    </div>
                 </label>
 
                 <label class="checkbox-group">
                     <input type="checkbox" value="Bhamini Maha Poshakaru" data-price="50000" data-basePrice="50000" class="item-checkbox">
                     <span class="item-label">Bhamini Maha Poshakaru</span>
-                    <select class="quantity-select" data-base-price="50000">
-                        <option value="1">1</option>
-                        <option value="2">2</option>
-                        <option value="3">3</option>
-                        <option value="4">4</option>
-                        <option value="5">5</option>
-                    </select>
-                    <span class="item-price">₹50000</span>
+                    <div class="item-controls">
+                        <select class="quantity-select" data-base-price="50000">
+                            <option value="1">1</option>
+                            <option value="2">2</option>
+                            <option value="3">3</option>
+                            <option value="4">4</option>
+                            <option value="5">5</option>
+                        </select>
+                        <span class="item-price">₹50000</span>
+                    </div>
                 </label>
 
                 <label class="checkbox-group">
                     <input type="checkbox" value="Girvani Jgnana Poshakaru" data-price="25000" data-basePrice="25000" class="item-checkbox">
                     <span class="item-label">Girvani Jgnana Poshakaru</span>
-                    <select class="quantity-select" data-base-price="25000">
-                        <option value="1">1</option>
-                        <option value="2">2</option>
-                        <option value="3">3</option>
-                        <option value="4">4</option>
-                        <option value="5">5</option>
-                    </select>
-                    <span class="item-price">₹25000</span>
+                    <div class="item-controls">
+                        <select class="quantity-select" data-base-price="25000">
+                            <option value="1">1</option>
+                            <option value="2">2</option>
+                            <option value="3">3</option>
+                            <option value="4">4</option>
+                            <option value="5">5</option>
+                        </select>
+                        <span class="item-price">₹25000</span>
+                    </div>
                 </label>
 
                 <label class="checkbox-group">
                     <input type="checkbox" value="Veenapaani Poshakaru" data-price="10000" data-basePrice="10000" class="item-checkbox">
                     <span class="item-label">Veenapaani Poshakaru</span>
-                    <select class="quantity-select" data-base-price="10000">
-                        <option value="1">1</option>
-                        <option value="2">2</option>
-                        <option value="3">3</option>
-                        <option value="4">4</option>
-                        <option value="5">5</option>
-                    </select>
-                    <span class="item-price">₹10000</span>
+                    <div class="item-controls">
+                        <select class="quantity-select" data-base-price="10000">
+                            <option value="1">1</option>
+                            <option value="2">2</option>
+                            <option value="3">3</option>
+                            <option value="4">4</option>
+                            <option value="5">5</option>
+                        </select>
+                        <span class="item-price">₹10000</span>
+                    </div>
                 </label>
 
                 <label class="checkbox-group">
                     <input type="checkbox" value="Complete Set" data-price="6000" data-basePrice="6000" class="item-checkbox">
                     <span class="item-label">Complete Set</span>
-                    <select class="quantity-select" data-base-price="6000">
-                        <option value="1">1</option>
-                        <option value="2">2</option>
-                        <option value="3">3</option>
-                        <option value="4">4</option>
-                        <option value="5">5</option>
-                    </select>
-                    <span class="item-price">₹6000</span>
+                    <div class="item-controls">
+                        <select class="quantity-select" data-base-price="6000">
+                            <option value="1">1</option>
+                            <option value="2">2</option>
+                            <option value="3">3</option>
+                            <option value="4">4</option>
+                            <option value="5">5</option>
+                        </select>
+                        <span class="item-price">₹6000</span>
+                    </div>
                 </label>
 
                 <label class="checkbox-group">
                     <input type="checkbox" value="Full Set A (Ramayana)" data-price="4000" data-basePrice="4000" class="item-checkbox">
                     <span class="item-label">Full Set A (Ramayana)</span>
-                    <select class="quantity-select" data-base-price="4000">
-                        <option value="1">1</option>
-                        <option value="2">2</option>
-                        <option value="3">3</option>
-                        <option value="4">4</option>
-                        <option value="5">5</option>
-                    </select>
-                    <span class="item-price">₹4000</span>
+                    <div class="item-controls">
+                        <select class="quantity-select" data-base-price="4000">
+                            <option value="1">1</option>
+                            <option value="2">2</option>
+                            <option value="3">3</option>
+                            <option value="4">4</option>
+                            <option value="5">5</option>
+                        </select>
+                        <span class="item-price">₹4000</span>
+                    </div>
                 </label>
 
                 <label class="checkbox-group">
                     <input type="checkbox" value="Full Set B (All Other 5)" data-price="4000" data-basePrice="4000" class="item-checkbox">
                     <span class="item-label">Full Set B (All Other 5)</span>
-                    <select class="quantity-select" data-base-price="4000">
-                        <option value="1">1</option>
-                        <option value="2">2</option>
-                        <option value="3">3</option>
-                        <option value="4">4</option>
-                        <option value="5">5</option>
-                    </select>
-                    <span class="item-price">₹4000</span>
+                    <div class="item-controls">
+                        <select class="quantity-select" data-base-price="4000">
+                            <option value="1">1</option>
+                            <option value="2">2</option>
+                            <option value="3">3</option>
+                            <option value="4">4</option>
+                            <option value="5">5</option>
+                        </select>
+                        <span class="item-price">₹4000</span>
+                    </div>
                 </label>
 
                 <label class="checkbox-group">
                     <input type="checkbox" value="Ramayana" data-price="4000" data-basePrice="4000" class="item-checkbox">
                     <span class="item-label">Ramayana</span>
-                    <select class="quantity-select" data-base-price="4000">
-                        <option value="1">1</option>
-                        <option value="2">2</option>
-                        <option value="3">3</option>
-                        <option value="4">4</option>
-                        <option value="5">5</option>
-                    </select>
-                    <span class="item-price">₹4000</span>
+                    <div class="item-controls">
+                        <select class="quantity-select" data-base-price="4000">
+                            <option value="1">1</option>
+                            <option value="2">2</option>
+                            <option value="3">3</option>
+                            <option value="4">4</option>
+                            <option value="5">5</option>
+                        </select>
+                        <span class="item-price">₹4000</span>
+                    </div>
                 </label>
 
                 <label class="checkbox-group">
                     <input type="checkbox" value="Brahmantaranga" data-price="1000" data-basePrice="1000" class="item-checkbox">
                     <span class="item-label">Brahmantaranga</span>
-                    <select class="quantity-select" data-base-price="1000">
-                        <option value="1">1</option>
-                        <option value="2">2</option>
-                        <option value="3">3</option>
-                        <option value="4">4</option>
-                        <option value="5">5</option>
-                    </select>
-                    <span class="item-price">₹1000</span>
+                    <div class="item-controls">
+                        <select class="quantity-select" data-base-price="1000">
+                            <option value="1">1</option>
+                            <option value="2">2</option>
+                            <option value="3">3</option>
+                            <option value="4">4</option>
+                            <option value="5">5</option>
+                        </select>
+                        <span class="item-price">₹1000</span>
+                    </div>
                 </label>
 
                 <label class="checkbox-group">
                     <input type="checkbox" value="Geetantaranga" data-price="1000" data-basePrice="1000" class="item-checkbox">
                     <span class="item-label">Geetantaranga</span>
-                    <select class="quantity-select" data-base-price="1000">
-                        <option value="1">1</option>
-                        <option value="2">2</option>
-                        <option value="3">3</option>
-                        <option value="4">4</option>
-                        <option value="5">5</option>
-                    </select>
-                    <span class="item-price">₹1000</span>
+                    <div class="item-controls">
+                        <select class="quantity-select" data-base-price="1000">
+                            <option value="1">1</option>
+                            <option value="2">2</option>
+                            <option value="3">3</option>
+                            <option value="4">4</option>
+                            <option value="5">5</option>
+                        </select>
+                        <span class="item-price">₹1000</span>
+                    </div>
                 </label>
 
                 <label class="checkbox-group">
                     <input type="checkbox" value="Sankshipta Ramayana" data-price="400" data-basePrice="400" class="item-checkbox">
                     <span class="item-label">Sankshipta Ramayana</span>
-                    <select class="quantity-select" data-base-price="400">
-                        <option value="1">1</option>
-                        <option value="2">2</option>
-                        <option value="3">3</option>
-                        <option value="4">4</option>
-                        <option value="5">5</option>
-                    </select>
-                    <span class="item-price">₹400</span>
+                    <div class="item-controls">
+                        <select class="quantity-select" data-base-price="400">
+                            <option value="1">1</option>
+                            <option value="2">2</option>
+                            <option value="3">3</option>
+                            <option value="4">4</option>
+                            <option value="5">5</option>
+                        </select>
+                        <span class="item-price">₹400</span>
+                    </div>
                 </label>
 
                 <label class="checkbox-group">
                     <input type="checkbox" value="Kathopanishath" data-price="400" data-basePrice="400" class="item-checkbox">
                     <span class="item-label">Kathopanishath</span>
-                    <select class="quantity-select" data-base-price="400">
-                        <option value="1">1</option>
-                        <option value="2">2</option>
-                        <option value="3">3</option>
-                        <option value="4">4</option>
-                        <option value="5">5</option>
-                    </select>
-                    <span class="item-price">₹400</span>
+                    <div class="item-controls">
+                        <select class="quantity-select" data-base-price="400">
+                            <option value="1">1</option>
+                            <option value="2">2</option>
+                            <option value="3">3</option>
+                            <option value="4">4</option>
+                            <option value="5">5</option>
+                        </select>
+                        <span class="item-price">₹400</span>
+                    </div>
                 </label>
 
                 <label class="checkbox-group">
                     <input type="checkbox" value="Saundarya Lahari" data-price="400" data-basePrice="400" class="item-checkbox">
                     <span class="item-label">Saundarya Lahari</span>
-                    <select class="quantity-select" data-base-price="400">
-                        <option value="1">1</option>
-                        <option value="2">2</option>
-                        <option value="3">3</option>
-                        <option value="4">4</option>
-                        <option value="5">5</option>
-                    </select>
-                    <span class="item-price">₹400</span>
+                    <div class="item-controls">
+                        <select class="quantity-select" data-base-price="400">
+                            <option value="1">1</option>
+                            <option value="2">2</option>
+                            <option value="3">3</option>
+                            <option value="4">4</option>
+                            <option value="5">5</option>
+                        </select>
+                        <span class="item-price">₹400</span>
+                    </div>
                 </label>
 
                 <label class="checkbox-group">
                     <input type="checkbox" value="Donation" data-price="0" data-basePrice="0" class="item-checkbox" id="donation-checkbox">
                     <span class="item-label">Donation</span>
-                    <input type="number" id="donation-amount" placeholder="Enter amount" class="donation-input" min="0" step="1" style="margin-left: 12px; margin-right: 12px; padding: 8px 12px; border: 2px solid #E8DFCE; border-radius: 8px; width: 120px; font-size: 14px;">
-                    <span class="item-price">₹<span id="donation-display">0</span></span>
+                    <div class="item-controls">
+                        <input type="number" id="donation-amount" placeholder="Enter amount" class="donation-input" min="0" step="1">
+                        <span class="item-price">₹<span id="donation-display">0</span></span>
+                    </div>
                 </label>
             </div>
 
