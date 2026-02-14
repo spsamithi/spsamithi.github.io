@@ -1902,15 +1902,17 @@
                 const checkbox = group.querySelector('.item-checkbox:checked');
                 if (checkbox) {
                     const itemName = checkbox.value;
-                    let basePrice = parseInt(checkbox.getAttribute('data-basePrice')) || 0;
                     let quantity = 1;
-                    let itemPrice = basePrice;
+                    let itemPrice = 0;
+                    let basePrice = 0;
                     
-                    // Special handling for donation - don't use quantity
+                    // Special handling for donation - read from input field
                     if (itemName === 'Donation') {
+                        basePrice = parseInt(document.getElementById('donation-amount').value) || 0;
                         itemPrice = basePrice;
                     } else {
-                        // For regular items, use quantity multiplier
+                        // For regular items, use attribute and quantity multiplier
+                        basePrice = parseInt(checkbox.getAttribute('data-basePrice')) || 0;
                         const quantitySelect = group.querySelector('.quantity-select');
                         quantity = parseInt(quantitySelect.value);
                         itemPrice = basePrice * quantity;
