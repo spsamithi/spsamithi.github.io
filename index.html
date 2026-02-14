@@ -1856,7 +1856,7 @@
                 const checkbox = group.querySelector('.item-checkbox:checked');
                 if (checkbox) {
                     const itemName = checkbox.value;
-                    let basePrice = parseInt(checkbox.dataset.basePrice) || 0;
+                    let basePrice = parseInt(checkbox.getAttribute('data-basePrice')) || 0;
                     let quantity = 1;
                     let itemPrice = basePrice;
                     
