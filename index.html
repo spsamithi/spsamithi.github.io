@@ -777,7 +777,7 @@
         }
 
         .receipt-actions {
-            display: none;
+            display: flex;
             gap: 12px;
             margin-top: 28px;
         }
@@ -2000,7 +2000,6 @@
                     backgroundColor: '#FFFFFF',
                     scale: 2
                 }).then(canvas => {
-                    actionsDiv.style.display = 'none';
                     canvas.toBlob(blob => {
                         const file = new File([blob], 'receipt-' + new Date().getTime() + '.png', { type: 'image/png' });
                         
@@ -2008,10 +2007,13 @@
                             title: 'Shankara Prakashana Samithi Receipt',
                             text: 'Here is my donation receipt',
                             files: [file]
+                        }).then(() => {
+                            actionsDiv.style.display = 'flex';
                         }).catch(err => {
                             console.log('Sharing cancelled or failed');
                             // Show modal as fallback
                             document.getElementById('shareModal').classList.add('active');
+                            actionsDiv.style.display = 'flex';
                         });
                     });
                 });
@@ -2023,6 +2025,7 @@
 
         function closeModal() {
             document.getElementById('shareModal').classList.remove('active');
+            document.querySelector('.receipt-actions').style.display = 'flex';
         }
 
         function downloadReceipt() {
@@ -2034,10 +2037,10 @@
                 backgroundColor: '#FFFFFF',
                 scale: 2
             }).then(canvas => {
-                actionsDiv.style.display = 'none';
                 canvas.toBlob(blob => {
                     downloadReceiptFallback(blob);
                     closeModal();
+                    actionsDiv.style.display = 'flex';
                 });
             });
         }
