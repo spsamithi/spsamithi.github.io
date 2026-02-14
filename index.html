@@ -438,6 +438,45 @@
             box-shadow: 0 0 0 3px rgba(244, 162, 97, 0.15);
         }
 
+        .donation-input {
+            padding: 8px 12px;
+            border: 2px solid #E8DFCE;
+            border-radius: 8px;
+            font-family: inherit;
+            font-size: 14px;
+            color: #2D2D2D;
+            background: white;
+            transition: all 0.3s;
+        }
+
+        .donation-input::placeholder {
+            color: #B8A89D;
+        }
+
+        .donation-input:focus {
+            outline: none;
+            border-color: #F4A261;
+            background: #FFFBF6;
+            box-shadow: 0 0 0 3px rgba(244, 162, 97, 0.15);
+        }
+
+        @media (max-width: 768px) {
+            .donation-input {
+                width: 100px !important;
+                padding: 6px 10px;
+                font-size: 12px;
+                border-radius: 6px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .donation-input {
+                width: 80px !important;
+                padding: 5px 8px;
+                font-size: 11px;
+            }
+        }
+
         .button-group {
             display: flex;
             gap: 14px;
@@ -1572,6 +1611,13 @@
                     </select>
                     <span class="item-price">₹400</span>
                 </label>
+
+                <label class="checkbox-group">
+                    <input type="checkbox" value="Donation" data-price="0" data-basePrice="0" class="item-checkbox" id="donation-checkbox">
+                    <span class="item-label">Donation</span>
+                    <input type="number" id="donation-amount" placeholder="Enter amount" class="donation-input" min="0" step="1" style="margin-left: 12px; margin-right: 12px; padding: 8px 12px; border: 2px solid #E8DFCE; border-radius: 8px; width: 120px; font-size: 14px;">
+                    <span class="item-price">₹<span id="donation-display">0</span></span>
+                </label>
             </div>
 
             <!-- Action Buttons -->
@@ -1729,6 +1775,24 @@
             }
         });
 
+        // Handle donation amount changes
+        document.addEventListener('input', function(e) {
+            if (e.target.classList.contains('donation-input')) {
+                const amount = parseInt(e.target.value) || 0;
+                const checkbox = document.getElementById('donation-checkbox');
+                const displaySpan = document.getElementById('donation-display');
+                
+                checkbox.dataset.price = amount;
+                checkbox.dataset.basePrice = amount;
+                displaySpan.textContent = amount.toLocaleString();
+                
+                // Auto-select checkbox when amount is entered
+                if (amount > 0) {
+                    checkbox.checked = true;
+                }
+            }
+        });
+
         function generateReceipt() {
             const donorName = document.getElementById('donorName').value;
             const phone = document.getElementById('phone').value;
@@ -1746,10 +1810,19 @@
                 const checkbox = group.querySelector('.item-checkbox:checked');
                 if (checkbox) {
                     const itemName = checkbox.value;
-                    const basePrice = parseInt(checkbox.dataset.basePrice) || parseInt(checkbox.closest('label').querySelector('.quantity-select').dataset.basePrice);
-                    const quantitySelect = group.querySelector('.quantity-select');
-                    const quantity = parseInt(quantitySelect.value);
-                    const itemPrice = basePrice * quantity;
+                    let basePrice = parseInt(checkbox.dataset.basePrice) || 0;
+                    let quantity = 1;
+                    let itemPrice = basePrice;
+                    
+                    // Special handling for donation - don't use quantity
+                    if (itemName === 'Donation') {
+                        itemPrice = basePrice;
+                    } else {
+                        // For regular items, use quantity multiplier
+                        const quantitySelect = group.querySelector('.quantity-select');
+                        quantity = parseInt(quantitySelect.value);
+                        itemPrice = basePrice * quantity;
+                    }
                     
                     selectedItems.push({ 
                         name: itemName, 
@@ -1804,6 +1877,9 @@
             document.querySelectorAll('.quantity-select').forEach(select => {
                 select.value = '1';
             });
+
+            document.getElementById('donation-amount').value = '';
+            document.getElementById('donation-display').textContent = '0';
 
             document.querySelectorAll('.item-price').forEach((span, index) => {
                 const basePrice = items[index].price;
