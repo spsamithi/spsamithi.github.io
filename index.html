@@ -330,6 +330,11 @@
         .receipt-content {
             display: none;
             text-align: center;
+            background: white;
+            padding: 32px;
+            border-radius: 16px;
+            border: 2px solid #F4A261;
+            box-shadow: 0 8px 24px rgba(244, 162, 97, 0.15);
         }
 
         .receipt-content.visible {
@@ -337,30 +342,45 @@
         }
 
         .receipt-header {
-            margin-bottom: 24px;
-            padding-bottom: 18px;
+            margin-bottom: 28px;
+            padding-bottom: 20px;
             border-bottom: 3px solid #F4A261;
         }
 
         .receipt-title {
             color: #F4A261;
-            font-size: 22px;
+            font-size: 28px;
             font-weight: 700;
-            margin-bottom: 6px;
-            letter-spacing: 0.3px;
+            margin-bottom: 8px;
+            letter-spacing: 0.5px;
         }
 
         .receipt-subtitle {
             color: #8B7D7D;
-            font-size: 12px;
-            font-weight: 500;
+            font-size: 13px;
+            font-weight: 600;
+            letter-spacing: 0.3px;
+        }
+
+        .receipt-details {
+            text-align: left;
+            margin-bottom: 28px;
+            background: #FFFBF6;
+            padding: 18px;
+            border-radius: 12px;
+            border: 1px solid #E8DFCE;
         }
 
         .receipt-field {
             text-align: left;
-            margin-bottom: 18px;
-            padding-bottom: 12px;
-            border-bottom: 1px solid #E8DFCE;
+            margin-bottom: 14px;
+            display: flex;
+            justify-content: space-between;
+            align-items: baseline;
+        }
+
+        .receipt-field:last-child {
+            margin-bottom: 0;
         }
 
         .receipt-field-label {
@@ -368,57 +388,105 @@
             font-size: 11px;
             text-transform: uppercase;
             font-weight: 700;
-            margin-bottom: 6px;
             letter-spacing: 0.5px;
+            flex: 0 0 auto;
+            margin-right: 12px;
         }
 
         .receipt-field-value {
             color: #2D2D2D;
-            font-size: 16px;
-            font-weight: 500;
+            font-size: 14px;
+            font-weight: 600;
+            text-align: right;
+            flex: 1;
         }
 
         .receipt-items {
-            margin: 24px 0;
-            padding: 18px 0;
-            border-top: 2px solid #E8DFCE;
+            margin: 28px 0;
+            padding: 20px 0;
+            border-top: 2px solid #F4A261;
+            border-bottom: 2px solid #F4A261;
+        }
+
+        .receipt-items-header {
+            display: grid;
+            grid-template-columns: 2fr 0.8fr 1fr;
+            gap: 12px;
+            padding-bottom: 12px;
+            margin-bottom: 16px;
             border-bottom: 2px solid #E8DFCE;
+            font-weight: 700;
+            font-size: 11px;
+            text-transform: uppercase;
+            color: #F4A261;
+            letter-spacing: 0.4px;
         }
 
         .receipt-item {
-            display: flex;
-            justify-content: space-between;
-            margin-bottom: 12px;
-            font-size: 14px;
+            display: grid;
+            grid-template-columns: 2fr 0.8fr 1fr;
+            gap: 12px;
+            align-items: center;
+            padding: 14px 0;
+            border-bottom: 1px solid #E8DFCE;
+            font-size: 13px;
+        }
+
+        .receipt-item:last-child {
+            border-bottom: none;
+            padding-bottom: 0;
         }
 
         .receipt-item-name {
             color: #2D2D2D;
-            font-weight: 500;
+            font-weight: 600;
+            text-align: left;
+        }
+
+        .receipt-item-meta {
+            font-size: 11px;
+            color: #8B7D7D;
+            margin-top: 4px;
+            text-align: left;
+        }
+
+        .receipt-item-qty {
+            color: #2D2D2D;
+            font-weight: 600;
+            text-align: center;
         }
 
         .receipt-item-price {
             color: #F4A261;
             font-weight: 700;
+            text-align: right;
         }
 
         .receipt-total {
-            display: flex;
-            justify-content: space-between;
-            margin-top: 18px;
-            padding-top: 12px;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 12px;
+            margin-top: 24px;
+            padding-top: 20px;
+            padding-bottom: 20px;
+            background: #FFFBF6;
+            border-radius: 12px;
+            padding: 20px;
+            border: 2px solid #F4A261;
         }
 
         .total-label {
             color: #2D2D2D;
-            font-size: 16px;
+            font-size: 18px;
             font-weight: 700;
+            text-align: left;
         }
 
         .total-amount {
             color: #F4A261;
             font-size: 24px;
             font-weight: 700;
+            text-align: right;
         }
 
         .receipt-actions {
@@ -1095,33 +1163,111 @@
                 <h2>Select Books</h2>
                 
                 <label class="checkbox-group">
-                    <input type="checkbox" value="Full Set" data-price="5000" class="item-checkbox">
-                    <span class="item-label">Full Set</span>
-                    <select class="quantity-select" data-base-price="5000">
+                    <input type="checkbox" value="Saraswati Pramukha Poshakaru" data-price="100000" data-basePrice="100000" class="item-checkbox">
+                    <span class="item-label">Saraswati Pramukha Poshakaru</span>
+                    <select class="quantity-select" data-base-price="100000">
                         <option value="1">1</option>
                         <option value="2">2</option>
                         <option value="3">3</option>
                         <option value="4">4</option>
                         <option value="5">5</option>
                     </select>
-                    <span class="item-price">₹5000</span>
+                    <span class="item-price">₹100000</span>
                 </label>
 
                 <label class="checkbox-group">
-                    <input type="checkbox" value="Ramayana" data-price="3000" class="item-checkbox">
+                    <input type="checkbox" value="Bhamini Maha Poshakaru" data-price="50000" data-basePrice="50000" class="item-checkbox">
+                    <span class="item-label">Bhamini Maha Poshakaru</span>
+                    <select class="quantity-select" data-base-price="50000">
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                        <option value="4">4</option>
+                        <option value="5">5</option>
+                    </select>
+                    <span class="item-price">₹50000</span>
+                </label>
+
+                <label class="checkbox-group">
+                    <input type="checkbox" value="Girvani Jgnana Poshakaru" data-price="25000" data-basePrice="25000" class="item-checkbox">
+                    <span class="item-label">Girvani Jgnana Poshakaru</span>
+                    <select class="quantity-select" data-base-price="25000">
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                        <option value="4">4</option>
+                        <option value="5">5</option>
+                    </select>
+                    <span class="item-price">₹25000</span>
+                </label>
+
+                <label class="checkbox-group">
+                    <input type="checkbox" value="Veenapaani Poshakaru" data-price="10000" data-basePrice="10000" class="item-checkbox">
+                    <span class="item-label">Veenapaani Poshakaru</span>
+                    <select class="quantity-select" data-base-price="10000">
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                        <option value="4">4</option>
+                        <option value="5">5</option>
+                    </select>
+                    <span class="item-price">₹10000</span>
+                </label>
+
+                <label class="checkbox-group">
+                    <input type="checkbox" value="Complete Set" data-price="6000" data-basePrice="6000" class="item-checkbox">
+                    <span class="item-label">Complete Set</span>
+                    <select class="quantity-select" data-base-price="6000">
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                        <option value="4">4</option>
+                        <option value="5">5</option>
+                    </select>
+                    <span class="item-price">₹6000</span>
+                </label>
+
+                <label class="checkbox-group">
+                    <input type="checkbox" value="Full Set A (Ramayana)" data-price="4000" data-basePrice="4000" class="item-checkbox">
+                    <span class="item-label">Full Set A (Ramayana)</span>
+                    <select class="quantity-select" data-base-price="4000">
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                        <option value="4">4</option>
+                        <option value="5">5</option>
+                    </select>
+                    <span class="item-price">₹4000</span>
+                </label>
+
+                <label class="checkbox-group">
+                    <input type="checkbox" value="Full Set B (All Other 5)" data-price="4000" data-basePrice="4000" class="item-checkbox">
+                    <span class="item-label">Full Set B (All Other 5)</span>
+                    <select class="quantity-select" data-base-price="4000">
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                        <option value="4">4</option>
+                        <option value="5">5</option>
+                    </select>
+                    <span class="item-price">₹4000</span>
+                </label>
+
+                <label class="checkbox-group">
+                    <input type="checkbox" value="Ramayana" data-price="4000" data-basePrice="4000" class="item-checkbox">
                     <span class="item-label">Ramayana</span>
-                    <select class="quantity-select" data-base-price="3000">
+                    <select class="quantity-select" data-base-price="4000">
                         <option value="1">1</option>
                         <option value="2">2</option>
                         <option value="3">3</option>
                         <option value="4">4</option>
                         <option value="5">5</option>
                     </select>
-                    <span class="item-price">₹3000</span>
+                    <span class="item-price">₹4000</span>
                 </label>
 
                 <label class="checkbox-group">
-                    <input type="checkbox" value="Brahmantaranga" data-price="1000" class="item-checkbox">
+                    <input type="checkbox" value="Brahmantaranga" data-price="1000" data-basePrice="1000" class="item-checkbox">
                     <span class="item-label">Brahmantaranga</span>
                     <select class="quantity-select" data-base-price="1000">
                         <option value="1">1</option>
@@ -1134,20 +1280,20 @@
                 </label>
 
                 <label class="checkbox-group">
-                    <input type="checkbox" value="Geetantaranga" data-price="900" class="item-checkbox">
+                    <input type="checkbox" value="Geetantaranga" data-price="1000" data-basePrice="1000" class="item-checkbox">
                     <span class="item-label">Geetantaranga</span>
-                    <select class="quantity-select" data-base-price="900">
+                    <select class="quantity-select" data-base-price="1000">
                         <option value="1">1</option>
                         <option value="2">2</option>
                         <option value="3">3</option>
                         <option value="4">4</option>
                         <option value="5">5</option>
                     </select>
-                    <span class="item-price">₹900</span>
+                    <span class="item-price">₹1000</span>
                 </label>
 
                 <label class="checkbox-group">
-                    <input type="checkbox" value="Sankshipta Ramayana" data-price="400" class="item-checkbox">
+                    <input type="checkbox" value="Sankshipta Ramayana" data-price="400" data-basePrice="400" class="item-checkbox">
                     <span class="item-label">Sankshipta Ramayana</span>
                     <select class="quantity-select" data-base-price="400">
                         <option value="1">1</option>
@@ -1160,7 +1306,7 @@
                 </label>
 
                 <label class="checkbox-group">
-                    <input type="checkbox" value="Kathopanishath" data-price="400" class="item-checkbox">
+                    <input type="checkbox" value="Kathopanishath" data-price="400" data-basePrice="400" class="item-checkbox">
                     <span class="item-label">Kathopanishath</span>
                     <select class="quantity-select" data-base-price="400">
                         <option value="1">1</option>
@@ -1173,16 +1319,16 @@
                 </label>
 
                 <label class="checkbox-group">
-                    <input type="checkbox" value="Saundarya Lahari" data-price="300" class="item-checkbox">
+                    <input type="checkbox" value="Saundarya Lahari" data-price="400" data-basePrice="400" class="item-checkbox">
                     <span class="item-label">Saundarya Lahari</span>
-                    <select class="quantity-select" data-base-price="300">
+                    <select class="quantity-select" data-base-price="400">
                         <option value="1">1</option>
                         <option value="2">2</option>
                         <option value="3">3</option>
                         <option value="4">4</option>
                         <option value="5">5</option>
                     </select>
-                    <span class="item-price">₹300</span>
+                    <span class="item-price">₹400</span>
                 </label>
             </div>
 
@@ -1201,35 +1347,43 @@
                     <div class="receipt-subtitle">Shankara Prakashana Samithi</div>
                 </div>
 
-                <div class="receipt-field">
-                    <div class="receipt-field-label">Receipt No</div>
-                    <div class="receipt-field-value" id="receiptNo">---</div>
+                <div class="receipt-details">
+                    <div class="receipt-field">
+                        <div class="receipt-field-label">Receipt No</div>
+                        <div class="receipt-field-value" id="receiptNo">---</div>
+                    </div>
+
+                    <div class="receipt-field">
+                        <div class="receipt-field-label">Date</div>
+                        <div class="receipt-field-value" id="receiptDate">---</div>
+                    </div>
+
+                    <div class="receipt-field">
+                        <div class="receipt-field-label">Donor Name</div>
+                        <div class="receipt-field-value" id="displayDonorName">---</div>
+                    </div>
+
+                    <div class="receipt-field">
+                        <div class="receipt-field-label">Phone</div>
+                        <div class="receipt-field-value" id="displayPhone">---</div>
+                    </div>
+
+                    <div class="receipt-field">
+                        <div class="receipt-field-label">Address</div>
+                        <div class="receipt-field-value" id="displayAddress">---</div>
+                    </div>
                 </div>
 
-                <div class="receipt-field">
-                    <div class="receipt-field-label">Date</div>
-                    <div class="receipt-field-value" id="receiptDate">---</div>
-                </div>
-
-                <div class="receipt-field">
-                    <div class="receipt-field-label">Donor Name</div>
-                    <div class="receipt-field-value" id="displayDonorName">---</div>
-                </div>
-
-                <div class="receipt-field">
-                    <div class="receipt-field-label">Phone</div>
-                    <div class="receipt-field-value" id="displayPhone">---</div>
-                </div>
-
-                <div class="receipt-field">
-                    <div class="receipt-field-label">Address</div>
-                    <div class="receipt-field-value" id="displayAddress">---</div>
+                <div class="receipt-items-header">
+                    <div>Item</div>
+                    <div>Qty</div>
+                    <div>Amount</div>
                 </div>
 
                 <div class="receipt-items" id="receiptItems"></div>
 
                 <div class="receipt-total">
-                    <div class="total-label">Total</div>
+                    <div class="total-label">Total Amount</div>
                     <div class="total-amount" id="totalAmount">₹0</div>
                 </div>
 
@@ -1259,17 +1413,23 @@
 
     <script>
         const items = [
-            { name: 'Full Set', price: 5000 },
-            { name: 'Ramayana', price: 3000 },
+            { name: 'Saraswati Pramukha Poshakaru', price: 100000 },
+            { name: 'Bhamini Maha Poshakaru', price: 50000 },
+            { name: 'Girvani Jgnana Poshakaru', price: 25000 },
+            { name: 'Veenapaani Poshakaru', price: 10000 },
+            { name: 'Complete Set', price: 6000 },
+            { name: 'Full Set A (Ramayana)', price: 4000 },
+            { name: 'Full Set B (All Other 5)', price: 4000 },
+            { name: 'Ramayana', price: 4000 },
             { name: 'Brahmantaranga', price: 1000 },
-            { name: 'Geetantaranga', price: 900 },
+            { name: 'Geetantaranga', price: 1000 },
             { name: 'Sankshipta Ramayana', price: 400 },
             { name: 'Kathopanishath', price: 400 },
-            { name: 'Saundarya Lahari', price: 300 }
+            { name: 'Saundarya Lahari', price: 400 }
         ];
 
         let selectedDate = new Date();
-        let receiptNumber = Math.floor(Math.random() * 100000) + 1000;
+        let receiptNumber = Math.floor(Math.random() * 99999) + 1;
 
         // Initialize date pills
         function initializeDatePills() {
@@ -1316,12 +1476,14 @@
         // Handle quantity changes
         document.addEventListener('change', function(e) {
             if (e.target.classList.contains('quantity-select')) {
-                const checkbox = e.target.closest('.checkbox-group').querySelector('.checkbox-group input[type="checkbox"]');
+                const checkbox = e.target.closest('.checkbox-group').querySelector('input[type="checkbox"]');
                 const priceSpan = e.target.closest('.checkbox-group').querySelector('.item-price');
                 const quantity = parseInt(e.target.value);
                 const basePrice = parseInt(e.target.dataset.basePrice);
                 const newPrice = basePrice * quantity;
                 
+                // Auto-select checkbox when quantity is changed
+                checkbox.checked = true;
                 checkbox.dataset.price = newPrice;
                 priceSpan.textContent = '₹' + newPrice.toLocaleString();
             }
@@ -1340,11 +1502,23 @@
             const selectedItems = [];
             let total = 0;
 
-            document.querySelectorAll('.item-checkbox:checked').forEach(checkbox => {
-                const itemName = checkbox.value;
-                const itemPrice = parseInt(checkbox.dataset.price);
-                selectedItems.push({ name: itemName, price: itemPrice });
-                total += itemPrice;
+            document.querySelectorAll('.checkbox-group').forEach(group => {
+                const checkbox = group.querySelector('.item-checkbox:checked');
+                if (checkbox) {
+                    const itemName = checkbox.value;
+                    const basePrice = parseInt(checkbox.dataset.basePrice) || parseInt(checkbox.closest('label').querySelector('.quantity-select').dataset.basePrice);
+                    const quantitySelect = group.querySelector('.quantity-select');
+                    const quantity = parseInt(quantitySelect.value);
+                    const itemPrice = basePrice * quantity;
+                    
+                    selectedItems.push({ 
+                        name: itemName, 
+                        basePrice: basePrice, 
+                        quantity: quantity, 
+                        totalPrice: itemPrice 
+                    });
+                    total += itemPrice;
+                }
             });
 
             if (selectedItems.length === 0) {
@@ -1361,8 +1535,12 @@
 
             const receiptItemsHtml = selectedItems.map(item => 
                 `<div class="receipt-item">
-                    <div class="receipt-item-name">${item.name}</div>
-                    <div class="receipt-item-price">₹${item.price.toLocaleString()}</div>
+                    <div>
+                        <div class="receipt-item-name">${item.name}</div>
+                        <div class="receipt-item-meta">₹${item.basePrice.toLocaleString()} each</div>
+                    </div>
+                    <div class="receipt-item-qty">${item.quantity}</div>
+                    <div class="receipt-item-price">₹${item.totalPrice.toLocaleString()}</div>
                 </div>`
             ).join('');
 
