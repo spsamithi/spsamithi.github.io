@@ -734,13 +734,7 @@
             color: #2D2D2D;
             font-weight: 600;
             text-align: left;
-        }
-
-        .receipt-item-meta {
-            font-size: 11px;
-            color: #8B7D7D;
-            margin-top: 4px;
-            text-align: left;
+            font-size: 13px;
         }
 
         .receipt-item-qty {
@@ -1946,10 +1940,7 @@
 
             const receiptItemsHtml = selectedItems.map(item => 
                 `<div class="receipt-item">
-                    <div>
-                        <div class="receipt-item-name">${item.name}</div>
-                        <div class="receipt-item-meta">₹${item.basePrice.toLocaleString()} each</div>
-                    </div>
+                    <div class="receipt-item-name">${item.name}</div>
                     <div class="receipt-item-qty">${item.quantity}</div>
                     <div class="receipt-item-price">₹${item.totalPrice.toLocaleString()}</div>
                 </div>`
@@ -2000,10 +1991,14 @@
             if (isMobile && navigator.share) {
                 // Mobile device with Web Share API support
                 const receiptDiv = document.getElementById('receipt');
+                const actionsDiv = document.querySelector('.receipt-actions');
+                actionsDiv.style.display = 'none';
+                
                 html2canvas(receiptDiv, {
                     backgroundColor: '#FFFFFF',
                     scale: 2
                 }).then(canvas => {
+                    actionsDiv.style.display = 'none';
                     canvas.toBlob(blob => {
                         const file = new File([blob], 'receipt-' + new Date().getTime() + '.png', { type: 'image/png' });
                         
@@ -2030,10 +2025,14 @@
 
         function downloadReceipt() {
             const receiptDiv = document.getElementById('receipt');
+            const actionsDiv = document.querySelector('.receipt-actions');
+            actionsDiv.style.display = 'none';
+            
             html2canvas(receiptDiv, {
                 backgroundColor: '#FFFFFF',
                 scale: 2
             }).then(canvas => {
+                actionsDiv.style.display = 'none';
                 canvas.toBlob(blob => {
                     downloadReceiptFallback(blob);
                     closeModal();
