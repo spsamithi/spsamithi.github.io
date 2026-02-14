@@ -498,14 +498,17 @@
         .btn-share,
         .btn-print {
             flex: 1;
-            padding: 14px;
+            padding: 16px 20px;
             border: 2px solid #F4A261;
             background: white;
             color: #F4A261;
             border-radius: 12px;
-            font-weight: 600;
+            font-weight: 700;
+            font-size: 15px;
             cursor: pointer;
             transition: all 0.3s;
+            display: block !important;
+            visibility: visible !important;
         }
 
         .btn-share:hover,
@@ -1031,9 +1034,12 @@
             }
 
             .app-header,
-            .form-section,
-            .receipt-actions {
+            .form-section {
                 display: none;
+            }
+
+            .receipt-actions {
+                display: none !important;
             }
 
             .container {
@@ -1455,15 +1461,13 @@
         function selectDate(date) {
             selectedDate = date;
             
-            // Update pill styling
-            document.querySelectorAll('.date-pill').forEach((pill, index) => {
+            // Remove active class from all pills
+            document.querySelectorAll('.date-pill').forEach(pill => {
                 pill.classList.remove('active');
-                if (index === 3) pill.classList.add('active'); // Middle pill (today)
             });
             
             // Find and activate the correct pill
             const pills = document.querySelectorAll('.date-pill');
-            let activeIndex = 0;
             pills.forEach((pill, index) => {
                 const pillDate = new Date();
                 pillDate.setDate(pillDate.getDate() + (index - 3));
@@ -1579,7 +1583,35 @@
         }
 
         function shareReceipt() {
-            document.getElementById('shareModal').classList.add('active');
+            // Check if device is mobile
+            const isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
+            
+            // Check if Web Share API is available
+            if (isMobile && navigator.share) {
+                // Mobile device with Web Share API support
+                const receiptDiv = document.getElementById('receipt');
+                html2canvas(receiptDiv, {
+                    backgroundColor: '#FEF9F2',
+                    scale: 2
+                }).then(canvas => {
+                    canvas.toBlob(blob => {
+                        const file = new File([blob], 'receipt-' + new Date().getTime() + '.png', { type: 'image/png' });
+                        
+                        navigator.share({
+                            title: 'Shankara Prakashana Samithi Receipt',
+                            text: 'Here is my donation receipt',
+                            files: [file]
+                        }).catch(err => {
+                            console.log('Sharing cancelled or failed');
+                            // Show modal as fallback
+                            document.getElementById('shareModal').classList.add('active');
+                        });
+                    });
+                });
+            } else {
+                // Desktop or devices without Web Share API - show modal
+                document.getElementById('shareModal').classList.add('active');
+            }
         }
 
         function closeModal() {
@@ -1592,12 +1624,19 @@
                 backgroundColor: '#FEF9F2',
                 scale: 2
             }).then(canvas => {
-                const link = document.createElement('a');
-                link.href = canvas.toDataURL();
-                link.download = 'receipt-' + new Date().getTime() + '.png';
-                link.click();
-                closeModal();
+                canvas.toBlob(blob => {
+                    downloadReceiptFallback(blob);
+                    closeModal();
+                });
             });
+        }
+
+        function downloadReceiptFallback(blob) {
+            const link = document.createElement('a');
+            link.href = URL.createObjectURL(blob);
+            link.download = 'receipt-' + new Date().getTime() + '.png';
+            link.click();
+            URL.revokeObjectURL(link.href);
         }
 
         window.addEventListener('click', function(e) {
